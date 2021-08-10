@@ -11,3 +11,4 @@ Scenario: Date Format
   And the user navigates to "Pay Bills" menu
   Then the Pay Bills page should be displayed
   When user completes a successful Pay operation
+  Then "The payment was successfully submitted." alert should be displayed

@@ -1,7 +1,9 @@
 package com.zerobank.stepdefinitions;
 
 import com.zerobank.pages.payBillsPage;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.support.ui.Select;
 
 import java.text.DateFormat;
@@ -30,8 +32,32 @@ public class payBillsStepDefs {
         int rand = random.nextInt(payeeOptions.getOptions().size());
         payeeOptions.selectByIndex(rand);
 
+        Select accountOptions = new Select(payBillsPage.accountOptions);
+        int rand2 = random.nextInt(accountOptions.getOptions().size());
+        accountOptions.selectByIndex(rand2);
 
+        int ammountRandom = random.nextInt(100000);
+        payBillsPage.amountInput.sendKeys(ammountRandom+"");
 
+        DateFormat df = new SimpleDateFormat("yy-MM-dd");
+        Date date = new Date();
+        payBillsPage.dateInput.sendKeys(df.format(date));
 
+        payBillsPage.descriptionInput.sendKeys("enjoy your money");
+
+        payBillsPage.payButton.click();
+
+    }
+
+    @Then("{string} alert should be displayed")
+    public void alertShouldBeDisplayed(String expectedMessage) {
+        if(expectedMessage.contains("success")){
+            Assert.assertTrue("Allert Box is not displayed", payBillsPage.alertMessageBox.isDisplayed());
+            String actualMessage = payBillsPage.alertMessageBox.getText();
+            Assert.assertEquals("message do not match", expectedMessage,actualMessage);
+        }else{
+            //TODO... error message part
+
+        }
     }
 }
