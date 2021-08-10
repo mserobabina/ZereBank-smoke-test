@@ -11,7 +11,9 @@ import org.junit.runner.RunWith;
                 "json:target/cucumber.json"
         },
         features = "src/test/resources/features",
-        glue = "com/zerobank/stepdefinitions"
+        glue = "com/zerobank/stepdefinitions",
+        dryRun = false,
+        tags = "@wip"
 )
 
 public class CukesRunner {
