@@ -56,8 +56,40 @@ public class payBillsStepDefs {
             String actualMessage = payBillsPage.alertMessageBox.getText();
             Assert.assertEquals("message do not match", expectedMessage,actualMessage);
         }else{
-            //TODO... error message part
+            if(payBillsPage.amountInput.getAttribute("value").isEmpty()){
+                String actualMessage = payBillsPage.amountInput.getAttribute("validationMessage");
+                Assert.assertEquals("alert do not match",expectedMessage,actualMessage);
+            }else{
+                String actualMessage = payBillsPage.dateInput.getAttribute("validationMessage");
+                Assert.assertEquals("alert do not match",expectedMessage,actualMessage);
+            }
 
         }
     }
+
+    @When("User tries to make a payment without entering the amount or date")
+    public void userTriesToMakeAPaymentWithoutEnteringTheAmountOrDate() {
+        int dateOrAmount = random.nextInt(2)+1;
+
+        Select payeeOptions = new Select(payBillsPage.payeeOptions);
+        int rand = random.nextInt(payeeOptions.getOptions().size());
+        payeeOptions.selectByIndex(rand);
+
+        Select accountOptions = new Select(payBillsPage.accountOptions);
+        int rand2 = random.nextInt(accountOptions.getOptions().size());
+        accountOptions.selectByIndex(rand2);
+        if(dateOrAmount==1){
+            int amountRandom = random.nextInt(100000);
+            payBillsPage.amountInput.sendKeys(amountRandom+"");
+        }else{
+            DateFormat df = new SimpleDateFormat("yy-MM-dd");
+            Date dateobj = new Date();
+            payBillsPage.dateInput.sendKeys(df.format(dateobj));
+        }
+        payBillsPage.descriptionInput.sendKeys("enjoy your payment");
+        payBillsPage.payButton.click();
+
+    }
+
+
 }
