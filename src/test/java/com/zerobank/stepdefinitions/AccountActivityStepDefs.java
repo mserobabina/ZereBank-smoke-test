@@ -3,10 +3,12 @@ package com.zerobank.stepdefinitions;
 import com.zerobank.pages.AccountActivityPage;
 import com.zerobank.pages.BasePage;
 import com.zerobank.utilities.BrowserUtils;
+import com.zerobank.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 
 import java.util.List;
 
@@ -35,5 +37,11 @@ public class AccountActivityStepDefs {
     public void transactionsTableShouldHaveColumnNames(List<String> expectedColumns) {
         List<String> actualColumns = BrowserUtils.getElementsText(accountActivityPage.accountColumnNames);
         Assert.assertEquals("columns do not match",expectedColumns,actualColumns);
+    }
+
+    @And("if user clicks on {string} link at AccountSummary Page")
+    public void ifUserClicksOnLinkAtAccountSummaryPage(String account) {
+        Driver.getDriver().findElement(By.linkText(account)).click();
+        BrowserUtils.sleep(1);
     }
 }
