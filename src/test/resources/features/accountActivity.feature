@@ -19,3 +19,16 @@ Scenario: Account activity features
     | Description |
     | Deposit     |
     | Withdrawal  |
+
+  Scenario Outline: Account activity navigation to account successful
+    Then the Account Summary page should be displayed
+    And if user clicks on "<account>" link at AccountSummary Page
+    Then the Account Activity page should be displayed
+    And Account drop down should have "<expectedAccount>" selected
+    Examples:
+      | account     | expectedAccount |
+      | Savings     | Savings         |
+      | Brokerage   | Brokerage       |
+      | Checking    | Checking        |
+      | Credit Card | Credit Card     |
+      | Loan        | Loan            |

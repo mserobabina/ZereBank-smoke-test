@@ -18,8 +18,8 @@ public class payBillsStepDefs {
 
     @When("Learn Date and DateFormat")
     public void learn_Date_and_DateFormat() {
-        DateFormat df = new SimpleDateFormat("yy-MM-dd");
-        DateFormat df2 = new SimpleDateFormat("dd-MM-yy hh:mm:ss");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         Date date = new Date();
         System.out.println(df.format(date));
         System.out.println(df2.format(date));
