@@ -4,7 +4,7 @@ Feature: Find Transactions feature
     And User logins with username "username" and password "password"
     And the user navigates to "Account Activity" menu
 
-@wip
+
   Scenario: Search date range
     Given the user accesses the Find Transactions tab
     When the user enters date range from "2012-09-01" to "2012-09-06"

@@ -9,10 +9,7 @@ import org.junit.Assert;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class FindTransactionsStepDefs {
     AccountActivityPage accountActivityPage = new AccountActivityPage();
@@ -95,4 +92,57 @@ public class FindTransactionsStepDefs {
             Assert.assertNotEquals(actualDate, dateNotAcceptable);
         }
     }
+    @When("the user enters description {string}")
+    public void the_user_enters_description(String word) {
+        String description = word.toUpperCase(Locale.ROOT);
+        accountActivityPage.descriptionInput.clear();
+        accountActivityPage.descriptionInput.sendKeys(description);
+        BrowserUtils.sleep(1);
+    }
+
+    @Then("results table should only show descriptions containing {string}")
+    public void results_table_should_only_show_descriptions_containing(String description) {
+
+        for (int i = 0; i < accountActivityPage.rows.size(); i++) {
+            Assert.assertTrue(accountActivityPage.rows.get(i).getText().contains(description));
+            System.out.println(accountActivityPage.rows.get(i).getText());
+        }
+    }
+
+    @Then("results table should not show descriptions containing {string}")
+    public void results_table_should_not_show_descriptions_containing(String description) {
+        for (int i = 0; i < accountActivityPage.rows.size(); i++) {
+            Assert.assertFalse(accountActivityPage.rows.get(i).getText().contains(description));
+            System.out.println(accountActivityPage.rows.get(i).getText());
+        }
+    }
+
+    @Then("results table should show at least one result under Deposit")
+    public void results_table_should_show_at_least_one_result_under_Deposit() {
+        Assert.assertFalse(new AccountActivityPage().columnBlank(3));
+
+    }
+
+    @Then("results table should show at least one result under Withdrawal")
+    public void results_table_should_show_at_least_one_result_under_Withdrawal() {
+        Assert.assertFalse(accountActivityPage.columnBlank(4));
+    }
+
+    @When("user selects type {string}")
+    public void user_selects_type(String selection) {
+        accountActivityPage.selectType(selection);
+    }
+
+    @Then("results table should show no result under Withdrawal")
+    public void results_table_should_show_no_result_under_Withdrawal() {
+        Assert.assertTrue(accountActivityPage.columnBlank(4));
+    }
+
+    @Then("results table should show no result under Deposit")
+    public void results_table_should_show_no_result_under_Deposit() {
+        Assert.assertTrue(accountActivityPage.columnBlank(3));
+    }
+
+
+
 }
