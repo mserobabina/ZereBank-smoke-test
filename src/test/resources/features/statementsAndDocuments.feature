@@ -17,7 +17,7 @@ Feature: Statements and Documents details
       | 2011 | 2     |
       | 2012 | 1     |
 
-
+@wip
   Scenario Outline: Download statements
     And the user selects the Recent Statements Year <year>
     When the user clicks on statement "<statement>"

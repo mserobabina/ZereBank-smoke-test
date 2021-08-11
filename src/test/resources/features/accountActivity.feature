@@ -19,7 +19,7 @@ Scenario: Account activity features
     | Description |
     | Deposit     |
     | Withdrawal  |
-@wip
+
   Scenario Outline: Account activity navigation to account successful
     Then the Account Summary page should be displayed
     And if user clicks on "<account>" link at AccountSummary Page
