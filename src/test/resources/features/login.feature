@@ -1,3 +1,4 @@
+@smoke
 Feature:Online Banking Login Feature
 
   Background: User login

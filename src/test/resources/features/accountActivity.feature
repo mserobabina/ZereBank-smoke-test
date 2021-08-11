@@ -1,3 +1,4 @@
+@smoke
 Feature: Account Activity functions
   Background:
     Given the user is on the login page
@@ -27,7 +28,7 @@ Scenario: Account activity features
     And Account drop down should have "<expectedAccount>" selected
     Examples:
       | account     | expectedAccount |
-      | Savings     | Savings         |
+      | Savings     | Savings          |
       | Brokerage   | Brokerage       |
       | Checking    | Checking        |
       | Credit Card | Credit Card     |

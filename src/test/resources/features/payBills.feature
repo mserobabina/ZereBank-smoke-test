@@ -1,3 +1,4 @@
+@smoke
 Feature: Pay Bills Functionality
 
   Background:

@@ -1,3 +1,4 @@
+@smoke
 Feature: Find Transactions feature
   Background:
     Given the user is on the login page
