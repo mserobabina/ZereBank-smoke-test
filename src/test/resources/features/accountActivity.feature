@@ -1,4 +1,4 @@
-@smoke
+@smoke @regression
 Feature: Account Activity functions
   Background:
     Given the user is on the login page
