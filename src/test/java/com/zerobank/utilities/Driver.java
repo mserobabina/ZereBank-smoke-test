@@ -7,7 +7,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
@@ -61,7 +64,6 @@ public class Driver {
                         ChromeOptions capability = new ChromeOptions();
                         capability.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
                         capability.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS,true);
-                        capability.setCapability("platform", Platform.ANY);
                         driverPool.set(new ChromeDriver(capability));
                         driverPool.get().manage().window().maximize();
                         driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

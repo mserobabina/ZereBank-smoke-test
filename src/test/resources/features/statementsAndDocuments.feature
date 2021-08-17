@@ -1,4 +1,4 @@
-@smoke
+
 Feature: Statements and Documents details
   Background:
     Given the user is on the login page
